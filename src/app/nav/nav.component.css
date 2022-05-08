@@ -1,0 +1,77 @@
+.navbar{
+    background-image: linear-gradient(-225deg, #FF3CAC 0%, #562B7C 52%, #2B86C5 100%);
+    min-width: 225px;
+ }
+
+ .bi{
+     color: white;
+ }
+
+ .btn-nav{
+    color: #41a0ff;
+    font-weight: bold;
+    border: 1px solid white;
+    border-radius: 10px;
+    background: white;
+ }
+ .bi:hover{
+     color: #88ccfd;
+     scale: 1.05;
+     
+ }
+
+ .btn-nav:hover{
+    color: white;
+    border: none;
+    background: #41a0ff;
+    border: 1px solid white;
+ }
+
+ .btn-mod{
+    background-color: #248cd6;
+    border-radius: 15px;
+    border: solid #0c7dce;
+    color: #fdfcfb;
+}
+.btn-mod:hover{
+    background-color: #4faaeb;
+    font-weight: bold;
+}
+
+ .animation:hover{
+    animation-name: an;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes an {
+    100% {
+      transform: scale(1.05);
+    }
+  }
+
+  .modal-body, .modal-header{
+    background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+  }
+
+  .info-text{
+    text-align: justify;
+    text-indent: 15px;
+  }
+
+
+@media  (max-width: 499px) {
+    .bi-linkedin{
+        margin-left: 30px;
+    }
+    .argPrograma{
+      display: none;
+  }
+}
+
+@media (max-width: 350px) {
+  .btn-nav{
+    margin-top: 20px;
+    margin-left: 0;
+}
+}

@@ -1,0 +1,134 @@
+<app-nav></app-nav>
+
+<div class="container-fluid mt-5 p-2" *ngFor="let headline of headlines">
+
+  <div class="container-sm">
+        <h2 class="text-center headlines p-2" >{{headline.title}}
+        <i *ngIf="logIn" class="bi bi-pencil animation ms-2" type="button" name="button" data-bs-toggle="modal" data-bs-target="#editHeadline" (click)="loadHeadline(headline)"></i>
+
+        <i *ngIf="logIn" type="button" class="bi bi-trash animation" (click)="deleteHeadline(headline.id)"></i></h2>
+
+        
+
+  <div class="mt-3" *ngFor="let content of contents">
+  
+    <!--Condicion 1, mostrar fechas-->
+    <div class="row align-items-center mt-4" *ngIf="headline.id == content.headline.id && content.startDate">
+      <p class="col-sm-3 text-center dates">{{format(content.startDate)}} - {{format(content.endDate) || 'actualidad'}}</p>
+      <p class="col-sm-7"><strong>{{content.title}}, </strong><i>{{content.place}}.</i> <br>
+        {{content.comments}}
+      </p>
+      <div class="col-sm-1"> <i *ngIf="logIn" class="bi bi-pencil animation" type="button" data-bs-toggle="modal"
+          data-bs-target="#editContent" (click)="loadContent(content)"></i>
+        <i *ngIf="logIn" type="button" class="bi bi-trash animation" (click)="deleteContent(content.id)"></i> <br>
+      </div>
+    </div>
+  
+    <!--Condicion" 2, sin fechas-->
+    <div class="row align-items-center mt-4" *ngIf="headline.id == content.headline.id && (content.startDate==null && content.endDate==null)">
+      <p class="col-sm-3"></p>
+      <p class="col-sm-7"> <strong>{{content.title}} </strong> {{content.place}} </p>
+      <div class="col-sm-1">
+        <i *ngIf="logIn" class="bi bi-pencil animation" type="button" data-bs-toggle="modal"
+          data-bs-target="#editContent" (click)="loadContent(content)"></i>
+        <i *ngIf="logIn" type="button" class="bi bi-trash animation" (click)="deleteContent(content.id)"></i>
+      </div>
+    </div>
+  </div>
+  <div class="row align-items-center mt-4">
+  <p class="col-sm-3 "></p><i *ngIf="logIn" class="bi bi-plus-circle animationTwo col-sm-7 mt-2" type="button" data-bs-toggle="modal" data-bs-target="#editContent" (click)="resetContent(headline)">Nuevo contenido</i>
+</div>
+  </div>
+  </div>
+
+
+<div class="container-sm mt-3">
+  <div class="row align-items-center">
+  <p class="col-sm-3"></p>
+  <i *ngIf="logIn" class="bi bi-plus-square fs-4 f animationTwo col-sm-6 mb-4  text-center headlines" type="button" data-bs-toggle="modal" data-bs-target="#editHeadline" (click)="resetHeadline()">Nuevo titular</i>
+</div>
+</div>
+
+
+<div class="container-md">
+<app-skills> </app-skills>
+</div>
+
+<app-footer></app-footer>
+
+
+<!--Modales-->
+
+<div class="modal fade" id="editHeadline" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">{{titleModal}}</h5>
+              <button type="button" class="btn-close animation" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form>
+                  <div>
+                      <input cols="30" rows="10" class="form-control" type="text" name="headline" [(ngModel)]="headlineModal.title"
+                          value="{{headlineModal.title}}">
+                  </div>
+                  <hr class="my-4">
+                  <div class="modal-dialog-centered justify-content-center">
+                      <button (click)="editHeadline(headlineModal)" type="button" class="btn btn-primary animationTwo"
+                          data-bs-dismiss="modal" aria-label="Close">
+                          Guardar
+                      </button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="editContent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{titleModalContent}}</h5>
+        <button type="button" class="btn-close animation" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div>
+            <label for="title" class="mt-2">Titulo: </label>
+            <input cols="30" rows="10" class="form-control" type="text" id="title" name="title"
+              [(ngModel)]="contentModal.title" value="{{contentModal.title}}">
+          </div>
+          <div>
+            <label for="place" class="mt-2">Lugar: </label>
+            <input cols="30" rows="10" class="form-control" type="text" id="place" name="place"
+              [(ngModel)]="contentModal.place" value="{{contentModal.place}}">
+          </div>
+          <div>
+            <label for="comments" class="mt-2">Comentarios: (Opcional) </label>
+            <input cols="30" rows="20" class="form-control" type="text" id="comments" name="comments"
+              [(ngModel)]="contentModal.comments" value="{{contentModal.comments}}">
+          </div>
+          <div>
+            <label for="startDate" class="mt-2">Fecha de inicio: </label>
+            <input cols="30" rows="10" class="form-control" type="date" id="startDate" name="startDate"
+              [(ngModel)]="contentModal.startDate" value="{{contentModal.startDate}}">
+          </div>
+          <div>
+            <label for="endDate" class="mt-2">Fecha de fin (Opcional):  </label>
+            <input cols="30" rows="10" class="form-control" type="date" id="endDate" name="endDate"
+              [(ngModel)]="contentModal.endDate" value="{{contentModal.endDate}}">
+          </div>
+          <hr class="my-4">
+          <div class="modal-dialog-centered justify-content-center">
+            <button (click)="editContent(contentModal)" type="button"
+              class="btn btn-primary animationTwo" data-bs-dismiss="modal" aria-label="Close">
+              Guardar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

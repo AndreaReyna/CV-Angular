@@ -1,0 +1,147 @@
+<div class="container-fluid imgFront"></div>
+
+<div class="container-fluid mt-5">
+    <div class="card mb-3 d-flex m-auto" style="max-width: 1000px;">
+        <div class="row g-0">
+
+            <div class="col-md-4">
+                <img src="./assets/img/img.jpg" alt="Imagen-CV" class="img-fluid img-cv rounded-start d-flex m-auto mt-2 mb-2"
+                    style="max-width: 250px;">
+            </div>
+
+            <div class="col-md-8">
+
+                <div class="card-body ms-2">
+                    <h1 class="mt-2 mb-2">{{header.name}} <i *ngIf="logIn" type="button" data-bs-toggle="modal" data-bs-target="#editName" class="bi bi-pencil-fill animation"></i></h1>
+                    <h4>{{header.description}}<i *ngIf="logIn" type="button" class="bi bi-pencil animation" data-bs-toggle="modal" data-bs-target="#editDescription"></i></h4>
+                   
+                    <div class="mt-4 p-0">
+                        <p class="personal d-inline"><i class="bi bi-whatsapp"></i> {{header.phone}}</p>
+                        <p class="personal d-inline ms-1"><i class="bi bi-envelope"></i> {{header.email}}</p>
+                        <p class="personal d-inline ms-1"><i class="bi bi-geo"></i>{{header.city}}</p>
+                        <i *ngIf="logIn" type="button" class="bi bi-pencil animation ms-3" data-bs-toggle="modal" data-bs-target="#editFields"></i>
+                    </div>
+                    <p class="mt-4">{{header.aboutMe}}<i *ngIf="logIn" type="button" class="bi bi-pencil animation" data-bs-toggle="modal" data-bs-target="#editAboutMe"></i></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--Modales-->
+
+    <div class="modal fade" id="editName" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar nombre:</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div>
+                            <input class="form-control" type="text" name="name" [(ngModel)]="header.name"
+                                value="{{header.name}}">
+                        </div>
+                        <hr class="my-4">
+                        <div class="modal-dialog-centered justify-content-center">
+                            <button (click)="edit(header)" type="button" class="btn btn-primary"
+                                data-bs-dismiss="modal" aria-label="Close">
+                                Guardar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="editDescription" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar description:</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div>
+                            <input class="form-control" type="text" name="description" [(ngModel)]="header.description"
+                                value="{{header.description}}">
+                        </div>
+                        <hr class="my-4">
+                        <div class="modal-dialog-centered justify-content-center">
+                            <button (click)="edit(header)" type="button" class="btn btn-primary"
+                                data-bs-dismiss="modal" aria-label="Close">
+                                Guardar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="editAboutMe" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar seccion:</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div>
+                            <textarea cols="30" rows="10" class="form-control" type="text" name="name"
+                                [(ngModel)]="header.aboutMe" value="{{header.aboutMe}}"></textarea>
+                        </div>
+                        <hr class="my-4">
+                        <div class="modal-dialog-centered justify-content-center">
+                            <button (click)="edit(header)" type="button" class="btn btn-primary"
+                                data-bs-dismiss="modal" aria-label="Close">
+                                Guardar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    <div class="modal fade" id="editFields" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar datos de contacto:</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form> 
+                        <div>
+                            <input class="form-control" type="text" name="phone" [(ngModel)]="header.phone"
+                                value="{{header.phone}}"  placeholder="Telefono">
+                        </div>
+                        <div>
+                            <input class="form-control mt-2" type="text" name="email" [(ngModel)]="header.email"
+                                value="{{header.email}}"  placeholder="Email">
+                        </div>
+                        <div>
+                            <input class="form-control mt-2" type="text" name="city" [(ngModel)]="header.city"
+                                value="{{header.city}}" placeholder="Ciudad">
+                        </div>
+                        <hr class="my-4">
+                        <div class="modal-dialog-centered justify-content-center">
+                            <button (click)="edit(header)" type="button" class="btn btn-primary"
+                                data-bs-dismiss="modal" aria-label="Close">
+                                Guardar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,27 @@
+.all-skills{
+    text-align: center;
+    border-radius: 50px;
+
+    background-image: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%);
+    background-image: linear-gradient(to top, #cd9cf294 0%, #f6f3ffaf 100%);
+
+}
+
+.progress-bar{
+    background-color: #562B7C;
+}
+
+.download-cv{
+    background-color: #562B7C;
+    border-radius: 15px;
+    border: solid #471e6b;
+    color: #fdfcfb;
+    text-decoration: none;
+    width: 9rem;
+}
+
+.download-cv:hover{
+    background-color: #6e3f97;
+    font-weight: bold;
+
+}

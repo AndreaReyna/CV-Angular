@@ -1,0 +1,34 @@
+.animation:hover{
+    animation-name: an;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes an {
+    100% {
+      transform: scale(1.2);
+    }
+  }
+
+.animationDos:hover{
+    animation-name: anDos;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+  @keyframes anDos {
+    100% {
+      transform: scale(1.05);
+    }
+  }
+
+  .titles{
+    background-color: #f3e7e9;
+    border-radius: 20px;
+  }
+
+  @media  (max-width: 500px) {
+    .fechas{
+    text-align: left !important;
+    }
+  }
